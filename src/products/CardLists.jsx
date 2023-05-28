@@ -1,6 +1,7 @@
 import { useState } from "react";
-import CardFunction from "./CardFunction";
-import SingleCard from "./SingleCard";
+import Card from "./parts/Card";
+import CardDetails from "./CardDetails";
+
 const cards = [
   {
     image:
@@ -65,35 +66,40 @@ const cards = [
 ];
 
 const CardObject = () => {
-  const [blogDetails, setBlogDetails] = useState({});
-  if (Object.keys(blogDetails).length === 0) {
-    return (
-      <div>
+  const [blogDetails, setBlogDetails] = useState();
+
+  return (
+    <>
+      {
+      !blogDetails && (
         <div className="container">
           <div className="card-wrapper clearfix">
-            {cards.map((card, index) => (
-              <CardFunction
+            {
+            cards.map((card, index) => (
+              <Card
                 key={index}
                 card={card}
                 setBlogDetails={setBlogDetails}
-              ></CardFunction>
-            ))}
+              />
+            ))
+            }
           </div>
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div>
+      )
+      }
+
+      {
+      blogDetails && (
         <div className="container">
-          <SingleCard
+          <CardDetails
             card={blogDetails}
             setBlogDetails={setBlogDetails}
-          ></SingleCard>
+          />
         </div>
-      </div>
-    );
-  }
+      )
+      }
+    </>
+  );
 };
 
 export default CardObject;

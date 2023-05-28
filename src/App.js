@@ -1,11 +1,12 @@
 import "./App.css";
 import Header from "./components/Header";
-import CardObject from "./components/CardObject";
+import CardLists from "./products/CardLists";
+import "./assets/myStyles.css";
 const App = () => {
   return (
     <div className="App">
       <Header />
-      <CardObject />
+      <CardLists />
     </div>
   );
 };
